@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.res.getDrawableOrThrow
 import androidx.core.graphics.drawable.toBitmap
 import com.doni.swipe.button.R
@@ -55,30 +56,31 @@ class CircleSwipeButton @JvmOverloads constructor(
         context?.let {
             val attributes = it.theme.obtainStyledAttributes(
                 attrs,
-                R.styleable.CircleSwipeButtonKt,
+                R.styleable.CircleSwipeButton,
                 0,
                 0
             )
             fixedInternalRadius =
                 attributes.getDimensionPixelSize(
-                    R.styleable.CircleSwipeButtonKt_fixedInternalRadius,
+                    R.styleable.CircleSwipeButton_fixedInternalRadius,
                     120
                 ).toFloat()
             fixedPressedExternalRadius =
                 attributes.getDimensionPixelSize(
-                    R.styleable.CircleSwipeButtonKt_fixedPressedExternalRadius,
+                    R.styleable.CircleSwipeButton_fixedPressedExternalRadius,
                     240
                 ).toFloat()
 
             idleExternalRadius =
                 attributes.getDimensionPixelSize(
-                    R.styleable.CircleSwipeButtonKt_idleExternalRadius,
+                    R.styleable.CircleSwipeButton_idleExternalRadius,
                     180
                 ).toFloat()
 
-            centerImage = attributes.getDrawableOrThrow(
-                R.styleable.CircleSwipeButtonKt_centerImage
-            ).toBitmap(fixedInternalRadius.toInt(), fixedInternalRadius.toInt())
+            centerImage = (attributes.getDrawable(
+                R.styleable.CircleSwipeButton_centerImage
+            ) ?: ResourcesCompat.getDrawable(resources, R.drawable.x, null)!!)
+                .toBitmap(fixedInternalRadius.toInt(), fixedInternalRadius.toInt())
 
             idleAlphaValue = 180
             animationPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {

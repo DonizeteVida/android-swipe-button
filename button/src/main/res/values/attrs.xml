@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CircleSwipeButtonKt" >
+    <declare-styleable name="CircleSwipeButton" >
         <attr name="fixedInternalRadius" format="dimension" />
         <attr name="fixedPressedExternalRadius" format="dimension" />
         <attr name="idleExternalRadius" format="dimension" />
