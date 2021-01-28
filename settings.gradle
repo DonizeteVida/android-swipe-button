@@ -1,0 +1,3 @@
+include ':button'
+include ':app'
+rootProject.name = "Swipe Button"
